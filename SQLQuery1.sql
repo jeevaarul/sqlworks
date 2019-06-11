@@ -45,8 +45,19 @@ insert into cars values(103,'  ',13000,9098)
 --anoter insert commants---
 insert into cars(carid,carprice,regno)values(2,12000,9898)
 
-select * from cars
+
+
 ---update commants---
 update cars set carprice=20000 where carid=2
 update cars set carcolor='green' where carid=102
 update cars set carcolor='red'where carid=103
+--delete command---
+delete from cars where carid=2
+
+--change the type int to varchar-----
+
+create table empy(empid int,empname varchar(30))
+
+alter table empy alter column empid varchar(30)
+
+select * from empy
