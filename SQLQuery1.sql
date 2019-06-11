@@ -61,3 +61,43 @@ create table empy(empid int,empname varchar(30))
 alter table empy alter column empid varchar(30)
 
 select * from empy
+
+--add a new column to the empy table empage of type int---
+alter table empy add empage int
+
+--drop a column from the empy table empage---
+alter table empy drop column empage
+
+---create table stud and drop the constriant------
+create table stud1(studid int primary key,studname varchar(30))
+
+--delete table hole table--
+
+drop table stud1
+
+--drop a constriant by name----
+
+alter table stud drop constraint PK__stud__E270950B491217AF 
+alter table stud1 drop constraint PK__stud1__E270950B1FF90F8A
+
+--create a constraint with name----
+create table cust(custid int constraint my_pk09 primary key,custname varchar(50),age int)
+
+create table demo(custid int constraint my_pk01 primary  key,custage int
+
+drop table demo
+
+---create table for foregin key quary----
+
+create table customer(custid int primary key,cname varchar(20)not null,cphone varchar(50))
+
+--with foreign key---
+create table orders(orderid int primary key,cid int foreign key references customer(custid),quantity int)
+
+insert into customer values(101,'arul',9791863005)
+insert into customer values(102,'jeeva',9659127425)
+
+select * from customer
+insert into orders values(1001,101,100)
+
+select * from orders
