@@ -101,3 +101,27 @@ select * from customer
 insert into orders values(1001,101,100)
 
 select * from orders
+
+---primary key and foreign key with alter table command---
+
+create table demo(custid int,cname varchar(50),constraint my_pk1 primary key(custid))
+
+create table demo1(custid int not null,cname varchar(50))
+
+insert demo1 values(101,'arul')
+insert demo1 values(102,'murugan')
+
+select * from demo1
+
+alter table demo1 add constraint my_pk2 primary key(custid)
+
+create table order1(orderid int primary key,cid int,quantity int)
+
+insert into order1 values(101,101,3400)
+insert into order1 values(102,102,20000)
+
+select * from order1
+
+--alter talble and add foreign key---
+
+alter table order1 add constraint my_fk foreign key(orderid)references demo1(custid) 
