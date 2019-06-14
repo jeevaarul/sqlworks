@@ -46,3 +46,63 @@ select Firstname+' '+Lastname  [Name]from dbo.Employees
 
  select DISTINCT title from dbo.Employees
 
+ --where---
+ select * from dbo.Customers
+ select city,CompanyName from dbo.Customers
+ select companyname,city from dbo.Customers WHERE City='paris'--(using single qutoes only)--
+
+ select contactName,address,city from dbo.Customers where city='berlin'
+ 
+ ---like and wildcard characters---% - The percent sign represents zero, one, or multiple characters
+--(_ - The underscore represents a single character)
+ select companyname from dbo.Customers where CompanyName LIKE 's%';--(Finds any values that start with "s")
+ 
+ select companyname from dbo.Customers where CompanyName like '%s'; --(Finds any values that end with "s")
+ 
+ select companyname from dbo.Customers where CompanyName like '%s%';--(Finds any values that have "or" in any position)
+ select companyname from dbo.Customers
+ select companyname from dbo.Customers where CompanyName like '_P%';--(Finds any values that have "p" in the second position)
+
+ select companyname from dbo.Customers where CompanyName like 'a__%';--(Finds any values that start with "a" and are at least 3 characters in length)
+
+ --matching from a list--
+ select customerid from dbo.Customers 
+ select customerid from dbo.Customers where CustomerID like 'FRAN[RK]';
+
+ select customerid from dbo.Customers where CustomerID like '[a-z]%';
+
+ select customerid from dbo.Customers where CustomerID like 'FRAN[^R]';--(Represents any character not in the brackets)
+
+ --between--(The BETWEEN operator selects values within a given range.)
+ --(The values can be numbers, text, or dates.)
+ --(The BETWEEN operator is inclusive: begin and end values are included.)
+ select * from dbo.Employees
+
+ select lastname,firstname,postalcode from dbo.Employees where PostalCode between '98103' and '98999';
+ 
+ --not between--
+ --(To display the products outside the range of the previous example, use NOT BETWEEN):
+
+ select lastname,firstname,postalcode from dbo.Employees where PostalCode not between '98103' and '98999';
+
+ --testing fro null values--
+ --(The expression to test for a NULL value.)
+
+ select Lastname,firstname,region from dbo.Employees where region is null; 
+   
+ --three level logic(true,false,null)--
+--(AND) requires both conitions tobe true--
+
+select Lastname,city,postalcode from dbo.Employees where City='seattle' and PostalCode like'9%';
+
+--(OR)only requires one condition tobe true--
+
+select lastname,city,postalcode from dbo.Employees where  city='seattle' or Postalcode like '9%';
+
+--(NOT)negates the expression--
+
+select lastname,city,postalcode from dbo.Employees where city not like 'seattle';
+
+--operator precedence:NOT,OR,AND----
+
+select lastname,firstname,city from dbo.Employees where LastName LIKE '%s' AND City NOT LIKE 'seattle';
