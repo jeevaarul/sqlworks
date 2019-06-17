@@ -104,5 +104,26 @@ select lastname,city,postalcode from dbo.Employees where  city='seattle' or Post
 select lastname,city,postalcode from dbo.Employees where city not like 'seattle';
 
 --operator precedence:NOT,OR,AND----
-
+select * from dbo.Customers
 select lastname,firstname,city from dbo.Employees where LastName LIKE '%s' AND City NOT LIKE 'seattle';
+
+select CustomerID,country from dbo.Customers where Country='france' OR Country='spain' 
+
+select customerID,country from dbo.Customers where Country like 'U%'
+
+---using into match in a list of elements----
+
+select CustomerID,country from dbo.Customers where Country IN ('france','spain')
+
+--nested subquery---
+select customerid,country from dbo.Customers where country IN (select DISTINCT country from dbo.Customers where Country like 'U%');
+
+-- in which a subquery (that returns a list of elements)--
+select CustomerID from dbo.Customers where CustomerID NOT IN (select DISTINCT CustomerID from dbo.Orders)
+
+  use test_Arul
+  go
+
+--SQL join---
+
+create table custtomer(cid int primary key,cname varchar(50),cphone varchar(50))
