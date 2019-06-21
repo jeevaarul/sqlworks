@@ -9,6 +9,8 @@ insert into customer1 values(1,'aru',979186)
 select * from customer1
 update customer1 set cname='arul' where cid=1
 insert into order1 values(1,1,'cpu',100)
+insert into order1 values(2,1,'mon',10)
+insert into order1 values(3,2,'cpu',100)
 
 select * from order1
 
@@ -34,7 +36,9 @@ select * from customer1 c inner join order1 o on c.cid=o.oid
 
 --show only selective colums using join---
 
-select cid as cusid,cname as name,cphone as phone,o.oid as orderid ,o.product as product,o.quantity as quantity from customer1 c join order1 o on c.cid=o.oid
+select c.cid as cusid,cname as name,cphone as phone,o.oid as orderid ,o.product as product,o.quantity as quantity from customer1 c join order1 o on c.cid=o.oid
 
 
----full join use
+---full join useful for admin customers who have placed to oreder---
+
+select c.cid as custid,c.cname as name,c.cphone as phone,o.oid as orderid,o.product as product,o.quantity as quantity from customer1 c full join order1 o on c.cid=o.oid where o.oid is null
